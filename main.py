@@ -5,7 +5,7 @@ from utils import dataframe_agent
 
 def create_chart(input_data, chart_type):
     df_data = pd.DataFrame(input_data["data"], columns=input_data["columns"])
-    df_data.set_index(input_data["columns"][0], replace=True)
+    df_data.set_index(input_data["columns"][0], inplace=True)
     if chart_type == "bar":
         st.bar_chart(df_data)
     if chart_type == "line":
@@ -47,3 +47,4 @@ if button and openai_api_key and "df" in st.session_state:
             create_chart(response_dict["line"], "line")
         if "scatter" in response_dict:
             create_chart(response_dict["scatter"], "scatter")
+
